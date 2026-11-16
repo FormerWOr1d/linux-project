@@ -20,6 +20,7 @@ int main(int argc, char* argv[]){
        return 1;
     }
 
+    srand(time(nullptr));
     for (int i=0; i < count; i++){
         int rundom = min+rand() % (max-min+1);
         cout << rundom << endl;
