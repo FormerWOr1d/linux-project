@@ -2,11 +2,11 @@ echo "markdown"
 echo "Папка $1"
 apt download $1
 
-FILE_NAME=$(ls $1*.deb)
+file=$(ls $1*.deb)
 
 mkdir my_data my_META
-dpkg -x $FILE_NAME my_data 
-dpkg -e $FILE_NAME my_META
+dpkg -x $file my_data
+dpkg -e $file my_META
 
 text="
 $(figlet -f block $1 | sed 's/^/    /')
@@ -34,6 +34,6 @@ $(sed 's/^/    /' my_META/prerm)
 $(sed 's/^/    /' my_META/postrm)
 "
 echo "$text">"MARKDOWN.md"
-rm -rf "$FILE_NAME"
+rm -rf "$file"
 rm -rf my_data
 rm -rf my_META
