@@ -19,6 +19,6 @@ int main(int argc, char* argv[]){
             min = num;
         }
     }
-    cout << "Min число: " << min;
+    cout << "Min число: " << min << endl;
     return 0;
 }
