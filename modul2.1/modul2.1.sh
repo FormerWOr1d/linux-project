@@ -1,5 +1,10 @@
+#!/bin/bash
 echo "markdown"
 echo "Папка $1"
+
+rm -f *.deb
+rm -rf my_data my_META
+
 apt download $1
 
 file=$(ls $1*.deb)
@@ -19,19 +24,27 @@ $(tree -L 3  my_data | sed 's/^/    /')
 
 ## Файл Preinst
 
-$(sed 's/^/    /' my_META/preinst)
+\`\`\`bash
+$(cat my_META/preinst 2>/dev/null || echo "(файл отсутствует)")
+\`\`\`
 
 ## Файл Postinst
 
-$(sed 's/^/    /' my_META/postinst)
+\`\`\`bash
+$(cat my_META/postinst 2>/dev/null || echo "(файл отсутствует)")
+\`\`\`
 
 ## Файл Prerm
 
-$(sed 's/^/    /' my_META/prerm)
+\`\`\`bash
+$(cat my_META/prerm 2>/dev/null || echo "(файл отсутствует)")
+\`\`\`
 
 ## Файл Postrm
 
-$(sed 's/^/    /' my_META/postrm)
+\`\`\`bash
+$(cat my_META/postrm 2>/dev/null || echo "(файл отсутствует)")
+\`\`\`
 "
 echo "$text">"MARKDOWN.md"
 rm -rf "$file"

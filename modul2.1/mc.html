@@ -1,0 +1,158 @@
+<pre><code>          _|    _|      
+  _|_|_|      _|_|_|_|  
+_|    _|  _|    _|      
+_|    _|  _|    _|      
+  _|_|_|  _|      _|_|  
+      _|                
+  _|_|                  </code></pre>
+<p><strong>Package:</strong> git<br />
+<strong>Version:</strong> 1:2.53.0-1<br />
+<strong>Priority:</strong> optional<br />
+<strong>Section:</strong> vcs<br />
+<strong>Maintainer:</strong> Jonathan Nieder <a
+href="mailto:jrnieder@gmail.com"
+class="email">jrnieder@gmail.com</a><br />
+<strong>Installed-Size:</strong> 52,2 MB<br />
+<strong>Provides:</strong> git-completion, git-core<br />
+<strong>Depends:</strong> libc6 (&gt;= 2.42), libcurl3t64-gnutls (&gt;=
+8.3.0), libexpat1 (&gt;= 2.0.1), libpcre2-8-0 (&gt;= 10.34), zlib1g
+(&gt;= 1:1.2.2), perl, liberror-perl, git-man (&gt;&gt; 1:2.53.0),
+git-man (&lt;&lt; 1:2.53.0-.)<br />
+<strong>Recommends:</strong> ca-certificates, patch, less,
+ssh-client<br />
+<strong>Suggests:</strong> gettext-base, git-doc, git-email, git-gui,
+gitk, gitweb, git-cvs, git-svn<br />
+<strong>Breaks:</strong> bash-completion (&lt;&lt; 1:1.90-1), cogito
+(&lt;= 0.18.2+), dgit (&lt;&lt; 5.1~), git-buildpackage (&lt;&lt;
+0.6.5), git-el (&lt;&lt; 1:2.32.0<sub>rc2-1</sub>), gitosis (&lt;&lt;
+0.2+20090917-7), gitpkg (&lt;&lt; 0.15), guilt (&lt;&lt; 0.33),
+openssh-client (&lt;&lt; 1:6.8), stgit (&lt;&lt; 0.15), stgit-contrib
+(&lt;&lt; 0.15)<br />
+<strong>Homepage:</strong> https://git-scm.com/<br />
+<strong>Tag:</strong> devel::lang:perl, devel::library, devel::rcs,
+implemented-in::c,<br />
+implemented-in::perl, implemented-in::shell, interface::text-mode,<br />
+network::client, network::server, protocol::ssh, protocol::tcp,<br />
+role::devel-lib, role::program, works-with::file,<br />
+works-with::software:source, works-with::vcs<br />
+<strong>Download-Size:</strong> 9 410 kB<br />
+<strong>APT-Manual-Installed:</strong> yes<br />
+<strong>APT-Sources:</strong> http://deb.debian.org/debian forky/main
+amd64 Packages<br />
+<strong>Description:</strong> масштабируемая распределённая система
+контроля версий<br />
+Git — это популярная система контроля версий, предназначенная для
+быстрой и<br />
+эффективной работы над очень большими проектами; используется
+многими<br />
+проектами с открытым исходным кодом, самым заметным из которых
+является<br />
+ядро Linux.<br />
+.<br />
+Git является распределённой системой контроля версий: для работы с ней
+не<br />
+нужен центральный сервер. Репозитории хранятся локально полностью, со
+всей<br />
+историей изменений, а соединение с центральным сервером (если
+такой<br />
+имеется) нужно только для публикации своих изменений и загрузки
+изменений<br />
+опубликованных другими (т.е. для синхронизации удалённого и
+локального<br />
+репозиториев).<br />
+.<br />
+Этот пакет устанавливает основные компоненты git. Дополнительные<br />
+компоненты, такие как графический интерфейс пользователя и утилита
+для<br />
+наглядного представления дерева версий, утилиты для организации<br />
+взаимодействия с другими системами контроля версий и
+веб-интерфейс,<br />
+доступны в отдельных пакетах git*.</p>
+<h1 id="структура-пакета">Структура пакета</h1>
+<pre><code>my_data
+├── etc
+│   └── bash_completion.d
+│       └── git-prompt
+├── usr
+│   ├── bin
+│   │   ├── git
+│   │   ├── git-receive-pack -&gt; git
+│   │   ├── git-shell
+│   │   ├── git-upload-archive -&gt; git
+│   │   ├── git-upload-pack -&gt; git
+│   │   └── scalar
+│   ├── lib
+│   │   └── git-core
+│   └── share
+│       ├── bash-completion
+│       ├── doc
+│       ├── git-core
+│       ├── gitweb
+│       ├── lintian
+│       ├── locale
+│       └── perl5
+└── var
+    └── lib
+        └── git
+
+18 directories, 7 files</code></pre>
+<h2 id="файл-preinst">Файл Preinst</h2>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/sh</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> <span class="at">-e</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Automatically added by dh_installdeb/13.31</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="ex">dpkg-maintscript-helper</span> rm_conffile /etc/bash_completion.d/git 1:1.8.0-1<span class="dt">\~</span> <span class="at">--</span> <span class="st">&quot;</span><span class="va">$@</span><span class="st">&quot;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># End automatically added section</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># /var/cache/git/ -&gt; /var/lib/git/ transition</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="bu">test</span> <span class="st">&quot;</span><span class="va">$1</span><span class="st">&quot;</span> = upgrade <span class="kw">&amp;&amp;</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>   <span class="ex">dpkg</span> <span class="at">--compare-versions</span> <span class="st">&quot;</span><span class="va">$2</span><span class="st">&quot;</span> lt-nl <span class="st">&#39;1:1.8.4~rc0-1&#39;</span><span class="kw">;</span> <span class="cf">then</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mkdir</span> <span class="at">-m</span> 755 <span class="at">-p</span> /var/lib/git</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">(</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>        <span class="bu">cd</span> /var/lib/git</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> target <span class="kw">in</span> ../../cache/git/<span class="pp">*</span><span class="kw">;</span> <span class="cf">do</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="ot">! </span><span class="bu">test</span> <span class="at">-L</span> <span class="st">&quot;</span><span class="va">$target</span><span class="st">&quot;</span> <span class="kw">&amp;&amp;</span> <span class="ot">! </span><span class="bu">test</span> <span class="at">-e</span> <span class="st">&quot;</span><span class="va">$target</span><span class="st">&quot;</span><span class="kw">;</span> <span class="cf">then</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>                <span class="cf">continue</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>            <span class="cf">fi</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>            <span class="va">link</span><span class="op">=</span><span class="va">${target</span><span class="op">#</span>../../cache/git/<span class="va">}</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="ot">! </span><span class="bu">test</span> <span class="at">-L</span> <span class="st">&quot;</span><span class="va">$link</span><span class="st">&quot;</span> <span class="kw">&amp;&amp;</span> <span class="ot">! </span><span class="bu">test</span> <span class="at">-e</span> <span class="st">&quot;</span><span class="va">$link</span><span class="st">&quot;</span><span class="kw">;</span> <span class="cf">then</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>                <span class="fu">ln</span> <span class="at">-s</span> <span class="st">&quot;</span><span class="va">$target</span><span class="st">&quot;</span> <span class="st">&quot;</span><span class="va">$link</span><span class="st">&quot;</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>            <span class="cf">fi</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>        <span class="cf">done</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    <span class="kw">)</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="cf">fi</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="co"># A previous version of the /var/lib/git/ transition code</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="co"># left behind a symlink &#39;/var/lib/git/*&#39; -&gt; &#39;../../cache/git/*&#39;.</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="bu">test</span> <span class="st">&quot;</span><span class="va">$1</span><span class="st">&quot;</span> = upgrade <span class="kw">&amp;&amp;</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>   <span class="ex">dpkg</span> <span class="at">--compare-versions</span> <span class="st">&quot;</span><span class="va">$2</span><span class="st">&quot;</span> eq <span class="st">&#39;1:1.8.4~rc0-1&#39;</span> <span class="kw">&amp;&amp;</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>   <span class="bu">test</span> <span class="at">-L</span> <span class="st">&#39;/var/lib/git/*&#39;</span><span class="kw">;</span> <span class="cf">then</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>    <span class="va">target</span><span class="op">=</span><span class="va">$(</span><span class="fu">readlink</span> <span class="st">&#39;/var/lib/git/*&#39;</span><span class="va">)</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">test</span> <span class="st">&quot;</span><span class="va">$target</span><span class="st">&quot;</span> = <span class="st">&#39;../../cache/git/*&#39;</span><span class="kw">;</span> <span class="cf">then</span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>        <span class="fu">rm</span> <span class="at">-f</span> <span class="st">&#39;/var/lib/git/*&#39;</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>    <span class="cf">fi</span></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a><span class="cf">fi</span></span></code></pre></div>
+<h2 id="файл-postinst">Файл Postinst</h2>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/sh</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> <span class="at">-e</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Automatically added by dh_installdeb/13.31</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="ex">dpkg-maintscript-helper</span> rm_conffile /etc/bash_completion.d/git 1:1.8.0-1<span class="dt">\~</span> <span class="at">--</span> <span class="st">&quot;</span><span class="va">$@</span><span class="st">&quot;</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># End automatically added section</span></span></code></pre></div>
+<h2 id="файл-prerm">Файл Prerm</h2>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/sh</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> <span class="at">-e</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Automatically added by dh_installdeb/13.31</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="ex">dpkg-maintscript-helper</span> rm_conffile /etc/bash_completion.d/git 1:1.8.0-1<span class="dt">\~</span> <span class="at">--</span> <span class="st">&quot;</span><span class="va">$@</span><span class="st">&quot;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># End automatically added section</span></span></code></pre></div>
+<h2 id="файл-postrm">Файл Postrm</h2>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/sh</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> <span class="at">-e</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Automatically added by dh_installdeb/13.31</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="ex">dpkg-maintscript-helper</span> rm_conffile /etc/bash_completion.d/git 1:1.8.0-1<span class="dt">\~</span> <span class="at">--</span> <span class="st">&quot;</span><span class="va">$@</span><span class="st">&quot;</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># End automatically added section</span></span></code></pre></div>
